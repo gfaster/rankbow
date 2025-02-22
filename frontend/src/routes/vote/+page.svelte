@@ -3,26 +3,10 @@
     import logo from "$lib/rankbow-fullsize-logo.png";
 </script>
 
-<!-- <link rel="preconnect" href="https://rsms.me/" />
-<link rel="stylesheet" href="https://rsms.me/inter/inter.css" /> -->
-
 <section>
-    <div>
-        <h1>rankbow</h1>
-    </div>
-    <div>
-        <img src={logo} alt="logo" />
-    </div>
-    <div>
-        <form>
-            <h3>Enter code to join the ballot:</h3>
-            <input type="text" placeholder="ID here" />
-            <!-- TODO: make sure people are required to enter ID before submitting -->
-            <a href="./vote/" aria-label="Submit ballot">
-                <input type="submit" />
-            </a>
-        </form>
-    </div>
+    <div><h1>yay you made it to vote!</h1></div>
+
+    <a href="../result/"> click here </a>
 </section>
 
 <style>
