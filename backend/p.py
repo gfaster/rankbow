@@ -3,18 +3,20 @@
 import http.client
 import sys
 import json
-from random import shuffle
+import random
 
 def req_any(conn, method, path, *args, **kwargs):
     conn.request(method, path, *args, **kwargs)
     resp = conn.getresponse()
-    print(f"{method} request to {path} returned {resp.status}")
+    if resp.status != 200:
+        print(f"{method} request to {path} returned {resp.status}")
     return resp.read()
 
 def req_json(conn, method, path, *args, **kwargs):
     conn.request(method, path, *args, **kwargs)
     resp = conn.getresponse()
-    print(f"{method} request to {path} returned {resp.status}")
+    if resp.status != 200:
+        print(f"{method} request to {path} returned {resp.status}")
     return json.loads(resp.read())
 
 
@@ -28,8 +30,12 @@ def main():
 
     choices = ["A", "B", "C", "D", "E"]
     for x in range(20):
-        shuffle(choices)
-        req_any(conn, "POST", f"/poll/{id}/submit", headers={"Content-Type": "application/json"}, body=json.dumps(choices))
+        random.shuffle(choices)
+        num_voted = random.randint(0, len(choices))
+        # vote = choices[:num_voted]
+        vote = choices
+        print(f"Casting vote: {vote}")
+        req_any(conn, "POST", f"/poll/{id}/submit", headers={"Content-Type": "application/json"}, body=json.dumps(vote))
 
     results = req_json(conn, "GET", f"/poll/{id}/results")
     print(results)
