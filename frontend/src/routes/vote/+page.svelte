@@ -6,7 +6,9 @@
 <section>
     <div><h1>yay you made it to vote!</h1></div>
 
-    <a href="../result/"> click here </a>
+    <a href="./vote/" aria-label="Submit ballot">
+        <input type="submit" />
+    </a>
 </section>
 
 <style>

@@ -1,0 +1,132 @@
+{
+  "title": "New Survey",
+  "choices": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E"
+  ],
+  "votes": [
+    [
+      {
+        "title": "A",
+        "first choice": 5,
+        "fourth choice": 0,
+        "second choice": 0,
+        "2nd choice": 0,
+        "third choice": 0
+      },
+      {
+        "title": "B",
+        "second choice": 0,
+        "2nd choice": 0,
+        "third choice": 0,
+        "fourth choice": 0,
+        "first choice": 4
+      },
+      {
+        "title": "C",
+        "third choice": 0,
+        "second choice": 0,
+        "fourth choice": 0,
+        "first choice": 5,
+        "2nd choice": 0
+      },
+      {
+        "title": "D",
+        "2nd choice": 0,
+        "second choice": 0,
+        "fourth choice": 0,
+        "first choice": 5,
+        "third choice": 0
+      },
+      {
+        "title": "E",
+        "fourth choice": 0,
+        "first choice": 1,
+        "second choice": 0,
+        "2nd choice": 0,
+        "third choice": 0
+      }
+    ],
+    [
+      {
+        "title": "A",
+        "first choice": 5,
+        "fourth choice": 0,
+        "third choice": 0,
+        "2nd choice": 0,
+        "second choice": 0
+      },
+      {
+        "title": "B",
+        "first choice": 4,
+        "2nd choice": 0,
+        "fourth choice": 0,
+        "third choice": 0,
+        "second choice": 0
+      },
+      {
+        "title": "C",
+        "2nd choice": 0,
+        "second choice": 0,
+        "third choice": 0,
+        "first choice": 5,
+        "fourth choice": 0
+      },
+      {
+        "title": "D",
+        "first choice": 5,
+        "third choice": 0,
+        "fourth choice": 0,
+        "2nd choice": 0,
+        "second choice": 1
+      }
+    ],
+    [
+      {
+        "title": "A",
+        "first choice": 5,
+        "fourth choice": 0,
+        "2nd choice": 2,
+        "third choice": 0,
+        "second choice": 1
+      },
+      {
+        "title": "C",
+        "fourth choice": 0,
+        "2nd choice": 0,
+        "first choice": 5,
+        "third choice": 0,
+        "second choice": 1
+      },
+      {
+        "title": "D",
+        "third choice": 0,
+        "fourth choice": 0,
+        "first choice": 5,
+        "2nd choice": 0,
+        "second choice": 1
+      }
+    ],
+    [
+      {
+        "title": "A",
+        "fourth choice": 0,
+        "2nd choice": 3,
+        "first choice": 5,
+        "second choice": 2,
+        "third choice": 0
+      },
+      {
+        "title": "D",
+        "fourth choice": 0,
+        "third choice": 0,
+        "first choice": 5,
+        "2nd choice": 3,
+        "second choice": 2
+      }
+    ]
+  ]
+}
