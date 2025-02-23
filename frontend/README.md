@@ -1,38 +1,28 @@
-# sv
+# Rankbow
+
+
+## How to run your own ballot:
 
 Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
 
-## Creating a project
+## Clone this repo
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
-```
+Click on code and git clone. You'll need an SSH key to your Github account.
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+1. Install dependencies with `npm install` (or `pnpm install` or `yarn`)
+
+2. Start the site by navigating to /frontend and running this command:
 
 ```bash
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
-
-To create a production version of your app:
+3. Start the server by navigating to /backend and running this command:
 
 ```bash
-npm run build
+cargo run -r
 ```
 
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+Created by Gavin Rohrer and [Samuel Effendy](https://github.com/dejazzhands)

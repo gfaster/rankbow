@@ -2,7 +2,7 @@
     import "inter-ui/inter.css";
     import logo from "$lib/rankbow-fullsize-logo.png";
 
-    let options = ["A", "B", "C"];
+    let options = ["A", "B", "C", "D", "E"];
 </script>
 
 <section>
@@ -22,11 +22,7 @@
             {/each}
 
             <!-- <a href="./poll/0/submit" aria-label="Submit ballot"> -->
-            <input
-                type="submit"
-                formmethod="post"
-                formaction="./poll/0/submit"
-            />
+            <input type="submit" formmethod="get" formaction="./result/" />
             <!-- </a> -->
         </form>
     </div>
@@ -58,7 +54,7 @@
     h2 {
         font-weight: bolder;
         font-size: 42px;
-        color: #023047;
+        color: #ffb703;
         filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 0.06));
         text-align: center;
     }
