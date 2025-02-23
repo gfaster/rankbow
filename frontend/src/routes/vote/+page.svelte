@@ -1,14 +1,29 @@
 <script>
     import "inter-ui/inter.css";
     import logo from "$lib/rankbow-fullsize-logo.png";
+
+    let options = ["A", "B", "C"];
 </script>
 
 <section>
-    <div><h1>yay you made it to vote!</h1></div>
+    <div>
+        <h2>
+            rank your choices from most liked to least liked (top to bottom)!
+        </h2>
+    </div>
+    <form>
+        {#each options as option_, i}
+            <select name="choice {i}" id="choice_{i}">
+                {#each options as option, i}
+                    <option value={option}>{option}</option>
+                {/each}
+            </select>
+        {/each}
 
-    <a href="./vote/" aria-label="Submit ballot">
-        <input type="submit" />
-    </a>
+        <!-- <a href="./poll/0/submit" aria-label="Submit ballot"> -->
+        <input type="submit" formmethod="post" formaction="./poll/0/submit" />
+        <!-- </a> -->
+    </form>
 </section>
 
 <style>
@@ -29,6 +44,17 @@
 
     h3 {
         font-weight: bolder;
+        font-size: 64px;
+        color: #023047;
+        filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 0.06));
+    }
+
+    h2 {
+        font-weight: bolder;
+        font-size: 42px;
+        color: #023047;
+        filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 0.06));
+        text-align: center;
     }
 
     h1 {

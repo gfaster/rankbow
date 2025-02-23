@@ -148,7 +148,7 @@
         <AxisLeft {width} {height} {margin} {yScale} ticksNumber={5} />
 
         <!-- X and Y Axis Labels -->
-        <XAxisLabel {width} {height} {margin} label={"Seasons"} />
+        <XAxisLabel {width} {height} {margin} label={"Options"} />
         <YAxisLabel
             {width}
             {height}
