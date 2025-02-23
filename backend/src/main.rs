@@ -1,7 +1,5 @@
 use std::{
-    collections::{BTreeMap, HashMap},
-    sync::{Arc, atomic::*},
-    time::{Duration, SystemTime},
+    collections::{BTreeMap, HashMap}, fmt, sync::{atomic::*, Arc}, time::{Duration, SystemTime}
 };
 
 use axum::{
@@ -92,7 +90,51 @@ async fn vote(
 struct Results {
     title: Str,
     choices: Box<[Str]>,
-    votes: Vec<HashMap<Str, Box<[u32]>>>,
+    votes: Vec<Vec<VoteTallyResult>>,
+}
+
+#[derive(Debug, Serialize)]
+struct VoteTallyResult {
+    /// ballot option
+    title: Str,
+    /// eg:
+    /// ```txt
+    ///
+    /// "first choice": 3,
+    /// "second choice": 2,
+    /// ...
+    #[serde(flatten)]
+    ranking: HashMap<Str, u32>,
+}
+
+fn ordinal_name(ord: u32) -> impl fmt::Display {
+    let ret: String = match ord {
+        0 => "zeroth".into(),
+        1 => "first".into(),
+        2 => "second".into(),
+        3 => "third".into(),
+        4 => "fourth".into(),
+        5 => "fifth".into(),
+        _ if ord % 10 == 1 => format!("{ord}st"),
+        _ if ord % 10 == 2 => format!("{ord}nd"),
+        _ if ord % 10 == 3 => format!("{ord}rd"),
+        _ => format!("{ord}th"),
+    };
+    ret
+}
+
+impl VoteTallyResult {
+    fn make_ranking(option_name: Str, ranks: &[u32]) -> Self {
+        let mut ranking = HashMap::new();
+        for (rank, &count) in ranks.iter().enumerate() {
+            let key = format!("{} choice", ordinal_name(rank as u32)).into_boxed_str();
+            ranking.insert(key, count);
+        }
+        Self {
+            title: option_name,
+            ranking,
+        }
+    }
 }
 
 async fn results(Path(id): Path<u64>, state: Arc<AppState>) -> Result<Json<Results>, StatusCode> {
@@ -122,7 +164,7 @@ async fn results(Path(id): Path<u64>, state: Arc<AppState>) -> Result<Json<Resul
             .iter()
             .enumerate()
             .filter(|&(i, _t)| has_votes[i])
-            .map(|(i, t)| (survey.choices[i].clone(), t.clone()))
+            .map(|(i, t)| VoteTallyResult::make_ranking(survey.choices[i].clone(), &**t))
             .collect();
 
         votes.push(this_step_results);
