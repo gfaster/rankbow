@@ -11,19 +11,25 @@
             rank your choices from most liked to least liked (top to bottom)!
         </h2>
     </div>
-    <form>
-        {#each options as option_, i}
-            <select name="choice {i}" id="choice_{i}">
-                {#each options as option, i}
-                    <option value={option}>{option}</option>
-                {/each}
-            </select>
-        {/each}
+    <div>
+        <form>
+            {#each options as option_, i}
+                <select name="choice {i}" id="choice_{i}">
+                    {#each options as option, i}
+                        <option value={option}>{option}</option>
+                    {/each}
+                </select>
+            {/each}
 
-        <!-- <a href="./poll/0/submit" aria-label="Submit ballot"> -->
-        <input type="submit" formmethod="post" formaction="./poll/0/submit" />
-        <!-- </a> -->
-    </form>
+            <!-- <a href="./poll/0/submit" aria-label="Submit ballot"> -->
+            <input
+                type="submit"
+                formmethod="post"
+                formaction="./poll/0/submit"
+            />
+            <!-- </a> -->
+        </form>
+    </div>
 </section>
 
 <style>
