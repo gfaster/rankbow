@@ -91,6 +91,7 @@ struct Results {
     title: Str,
     choices: Box<[Str]>,
     votes: Vec<Vec<VoteTallyResult>>,
+    rank_fields: Vec<Str>,
 }
 
 #[derive(Debug, Serialize)]
@@ -109,12 +110,12 @@ struct VoteTallyResult {
 
 fn ordinal_name(ord: u32) -> impl fmt::Display {
     let ret: String = match ord {
-        0 => "zeroth".into(),
-        1 => "first".into(),
-        2 => "second".into(),
-        3 => "third".into(),
-        4 => "fourth".into(),
-        5 => "fifth".into(),
+        // 0 => "zeroth".into(),
+        1 => "top".into(),
+        // 2 => "second".into(),
+        // 3 => "third".into(),
+        // 4 => "fourth".into(),
+        // 5 => "fifth".into(),
         _ if ord % 10 == 1 => format!("{ord}st"),
         _ if ord % 10 == 2 => format!("{ord}nd"),
         _ if ord % 10 == 3 => format!("{ord}rd"),
@@ -124,10 +125,13 @@ fn ordinal_name(ord: u32) -> impl fmt::Display {
 }
 
 impl VoteTallyResult {
+    fn rank_fields(count: u32) -> Vec<Str> {
+        (1..=count).map(|i| format!("{} choice", ordinal_name(i)).into_boxed_str()).collect()
+    }
+
     fn make_ranking(option_name: Str, ranks: &[u32]) -> Self {
         let mut ranking = HashMap::new();
-        for (rank, &count) in ranks.iter().enumerate() {
-            let key = format!("{} choice", ordinal_name(rank as u32)).into_boxed_str();
+        for (&count, key) in ranks.iter().zip(Self::rank_fields(ranks.len() as u32)) {
             ranking.insert(key, count);
         }
         Self {
@@ -184,6 +188,7 @@ async fn results(Path(id): Path<u64>, state: Arc<AppState>) -> Result<Json<Resul
     Ok(Json(Results {
         choices: survey.choices.clone(),
         title: survey.title.clone(),
+        rank_fields: VoteTallyResult::rank_fields(survey.choices.len() as u32),
         votes,
     }))
 }
